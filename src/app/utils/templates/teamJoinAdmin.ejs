@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>New Join Team Submission</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background: #f6f9fc;
+        font-family:
+          -apple-system,
+          Segoe UI,
+          Roboto,
+          Helvetica,
+          Arial,
+          sans-serif;
+        color: #111827;
+      }
+      .wrap {
+        padding: 40px 0;
+      }
+      .card {
+        max-width: 800px;
+        margin: 0 auto;
+        background: #ffffff;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 10px 28px rgba(0, 0, 0, 0.08);
+      }
+      .header {
+        background: #0f172a;
+        color: #fff;
+        padding: 20px 24px;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+      .logo {
+        width: 40px;
+        height: auto;
+        display: block;
+      }
+      .brand {
+        font-size: 16px;
+        font-weight: 600;
+        margin: 0;
+        letter-spacing: 0.3px;
+      }
+      .content {
+        padding: 24px;
+      }
+      h1 {
+        font-size: 20px;
+        margin: 0 0 10px;
+      }
+      p {
+        margin: 0 0 12px;
+        line-height: 1.6;
+      }
+      .meta-grid {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 12px;
+      }
+      .meta-grid th,
+      .meta-grid td {
+        text-align: left;
+        padding: 10px 12px;
+        border-bottom: 1px solid #eef2f7;
+        vertical-align: top;
+        font-size: 14px;
+      }
+      .meta-grid th {
+        width: 220px;
+        color: #374151;
+        font-weight: 600;
+        background: #f9fafb;
+      }
+      .pill {
+        display: inline-block;
+        padding: 6px 10px;
+        border-radius: 999px;
+        background: #eef2ff;
+        font-size: 12px;
+        color: #1f2937;
+      }
+      .section-title {
+        margin: 18px 0 8px;
+        font-weight: 700;
+        color: #111827;
+      }
+      .notes {
+        background: #f9fafb;
+        border: 1px solid #eef2f7;
+        border-radius: 10px;
+        padding: 14px;
+        white-space: pre-wrap;
+      }
+      .footer {
+        padding: 16px 24px;
+        text-align: center;
+        font-size: 12px;
+        color: #6b7280;
+        background: #fafafa;
+      }
+      .actions a {
+        display: inline-block;
+        padding: 10px 16px;
+        border-radius: 10px;
+        background: #2563eb;
+        color: #fff !important;
+        text-decoration: none;
+        font-weight: 600;
+        margin-right: 8px;
+      }
+      .muted {
+        color: #6b7280;
+        font-size: 12px;
+      }
+      @media (prefers-color-scheme: dark) {
+        body {
+          background: #0b1220;
+          color: #e5e7eb;
+        }
+        .card {
+          background: #0f172a;
+          box-shadow: none;
+        }
+        .header {
+          background: #0b1220;
+        }
+        .meta-grid th,
+        .meta-grid td {
+          border-color: #1f2937;
+        }
+        .meta-grid th {
+          background: #0f172a;
+          color: #c7d2fe;
+        }
+        .notes {
+          background: #111827;
+          border-color: #1f2937;
+        }
+        .footer {
+          background: #0b1220;
+          color: #9ca3af;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="card">
+        <div class="header">
+          <img src="https://www.shrlbd.com/logo.png" alt="Logo" class="logo" />
+          <p class="brand">Smart Health Care & Research — Admin Notice</p>
+        </div>
+
+        <div class="content">
+          <h1>New “Join Team” submission received</h1>
+
+          <table class="meta-grid" role="presentation" cellspacing="0" cellpadding="0" border="0">
+            <tr>
+              <th>Name</th>
+              <td><%= name %></td>
+            </tr>
+            <tr>
+              <th>Email</th>
+              <td><a href="mailto:<%= email %>"><%= email %></a></td>
+            </tr>
+            <tr>
+              <th>Phone</th>
+              <td><a href="tel:<%= phone %>"><%= phone %></a></td>
+            </tr>
+            <tr>
+              <th>Gender</th>
+              <td><span class="pill"><%= gender %></span></td>
+            </tr>
+            <tr>
+              <th>Occupation</th>
+              <td><%= occupation %></td>
+            </tr>
+            <tr>
+              <th>Organization</th>
+              <td><%= organization %></td>
+            </tr>
+            <tr>
+              <th>Field of Interest</th>
+              <td><%= field_of_interest %></td>
+            </tr>
+            <tr>
+              <th>Time Commitment</th>
+              <td><%= time_commitment %></td>
+            </tr>
+          </table>
+
+          <p class="section-title">Motivation / Notes</p>
+          <div class="notes"><%= Why_join_team %></div>
+
+          <div class="section-title">Quick Actions</div>
+          <p class="actions">
+            <a href="mailto:<%= email %>?subject=Thanks%20for%20joining%20—%20Next%20steps"
+              >Reply to applicant</a
+            >
+          </p>
+
+          <p class="muted">
+            You’re receiving this message because you’re configured as an admin for Join Team
+            submissions.
+          </p>
+        </div>
+
+        <div class="footer">Smart Health Care & Research Ltd. Internal use only.</div>
+      </div>
+    </div>
+  </body>
+</html>

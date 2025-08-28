@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Reply</title>
+    <style>
+      body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f9f9f9;
+        margin: 0;
+        padding: 20px;
+      }
+
+      .container {
+        max-width: 600px;
+        margin: auto;
+        background: white;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      h1 {
+        color: #039be5;
+      }
+      .regards {
+        font-weight: 600;
+        margin-top: 50px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Hello <%= name %>,</h1>
+      <p>Thank you for contacting SHRL!</p>
+      <p>We’ve received your message and our team will get back to you as soon as possible.</p>
+      <p class="regards">Warm regards,</p>
+      <p><%= adminName %></p>
+    </div>
+  </body>
+</html>

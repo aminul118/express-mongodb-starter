@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Email Response from SHRL Admin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f6f8;
+        margin: 0;
+        padding: 0;
+      }
+      .email-container {
+        max-width: 800px;
+        margin: 30px auto;
+        background-color: #ffffff;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      }
+      .header {
+        text-align: center;
+        background-color: #08173f;
+        color: rgb(215, 204, 204);
+        padding: 20px;
+      }
+      .header img {
+        max-width: 80px;
+      }
+      .content {
+        padding: 20px 30px;
+        font-size: 14px;
+        color: #333;
+        line-height: 1.5;
+      }
+      .footer {
+        text-align: center;
+        padding: 15px;
+        font-size: 12px;
+        color: #888;
+        background-color: #f4f6f8;
+      }
+      .content p {
+        margin: 0 0 10px 0; /* bottom space only, less than default */
+        line-height: 1.4; /* tighter line spacing */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="email-container">
+      <div class="header">
+        <img src="https://www.shrlbd.com/logo.png" alt="Company Logo" />
+        <p>Smart Healthcare & Research Limited</p>
+      </div>
+
+      <div class="content"><%- message %></div>
+      <!-- ✅ KEEP HTML from Quill -->
+
+      <div class="footer">
+        &copy; <%= new Date().getFullYear() %> Smart Healthcare & Research Ltd.. All rights
+        reserved.
+      </div>
+    </div>
+  </body>
+</html>

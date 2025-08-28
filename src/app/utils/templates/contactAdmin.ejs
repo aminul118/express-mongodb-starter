@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>New Contact Submission</title>
+    <style>
+      body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f9f9f9;
+        margin: 0;
+        padding: 20px;
+      }
+      .container {
+        background-color: #ffffff;
+        padding: 30px;
+        max-width: 600px;
+        margin: auto;
+        border-radius: 8px;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+      }
+      h2 {
+        color: #039be5;
+        margin-bottom: 20px;
+      }
+      .info {
+        margin-bottom: 15px;
+      }
+      .info strong {
+        display: inline-block;
+        width: 100px;
+      }
+      .message {
+        background-color: #f1f1f1;
+        padding: 15px;
+        margin-top: 10px;
+        border-radius: 6px;
+        white-space: pre-wrap;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>📩 New Contact received from SHRL</h2>
+
+      <div class="info"><strong>Name:</strong> <%= name %></div>
+      <div class="info"><strong>Email:</strong> <%= email %></div>
+
+      <div class="info">
+        <strong>Message:</strong>
+        <div class="message"><%= message %></div>
+      </div>
+
+      <p style="margin-top: 20px; color: #555">
+        You received this message via the <a href="https://www.shrlbd.com">SHRL</a> contact form.
+      </p>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Thank you</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      /* Client-safe, inline-ish styles */
+      body {
+        margin: 0;
+        padding: 0;
+        background: #f6f9fc;
+        font-family:
+          -apple-system,
+          Segoe UI,
+          Roboto,
+          Helvetica,
+          Arial,
+          sans-serif;
+        color: #1f2937;
+      }
+      .wrapper {
+        width: 100%;
+        background: #f6f9fc;
+        padding: 40px 0;
+      }
+      .container {
+        max-width: 600px;
+        margin: 0 auto;
+        background: #ffffff;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+      }
+      .header {
+        background: #0f172a;
+        color: #fff;
+        padding: 24px;
+        text-align: center;
+      }
+      .logo {
+        width: 120px;
+        height: auto;
+        display: block;
+        margin: 0 auto 12px;
+      }
+      .brand {
+        font-size: 18px;
+        font-weight: 600;
+        letter-spacing: 0.3px;
+        margin: 0;
+      }
+      .content {
+        padding: 28px 24px;
+      }
+      h1 {
+        font-size: 22px;
+        margin: 0 0 12px;
+        color: #111827;
+      }
+      p {
+        margin: 0 0 12px;
+        line-height: 1.55;
+      }
+      .card {
+        background: #f9fafb;
+        border: 1px solid #eef2f7;
+        border-radius: 10px;
+        padding: 16px;
+        margin: 16px 0;
+      }
+      .meta {
+        font-size: 14px;
+        color: #374151;
+      }
+      .divider {
+        height: 1px;
+        background: #eef2f7;
+        margin: 24px 0;
+      }
+      .button {
+        display: inline-block;
+        padding: 12px 18px;
+        border-radius: 10px;
+        background: #2563eb;
+        color: #fff !important;
+        text-decoration: none;
+        font-weight: 600;
+      }
+      .muted {
+        color: #6b7280;
+        font-size: 12px;
+      }
+      .footer {
+        text-align: center;
+        padding: 18px;
+        color: #6b7280;
+        font-size: 12px;
+      }
+      @media (prefers-color-scheme: dark) {
+        body {
+          background: #0b1220;
+          color: #e5e7eb;
+        }
+        .container {
+          background: #0f172a;
+          box-shadow: none;
+        }
+        .header {
+          background: #0b1220;
+        }
+        h1,
+        .meta {
+          color: #e5e7eb;
+        }
+        .card {
+          background: #111827;
+          border-color: #1f2937;
+        }
+        .divider {
+          background: #1f2937;
+        }
+        .footer {
+          color: #9ca3af;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="container">
+        <div class="header">
+          <img src="https://www.shrlbd.com/logo.png" alt="Logo" class="logo" />
+          <p class="brand">Smart Health Care & Research</p>
+        </div>
+
+        <div class="content">
+          <h1>Thank you, <%= name %> 👋</h1>
+          <p>
+            Thank you for joining with us. We’ve received your request and our team will review it
+            shortly. We’ll contact you as soon as possible with next steps.
+          </p>
+
+          <div class="card">
+            <p class="meta"><strong>Summary of your submission</strong></p>
+            <p class="meta">Email: <%= email %></p>
+            <p class="meta">Phone: <%= phone %></p>
+            <p class="meta">Organization: <%= organization %></p>
+            <p class="meta">Occupation: <%= occupation %></p>
+            <p class="meta">Area of Interest: <%= field_of_interest %></p>
+            <p class="meta">Time Commitment: <%= time_commitment %></p>
+          </div>
+
+          <p>
+            If you have anything to add or want to update your information, just reply to this
+            email.
+          </p>
+
+          <div class="divider"></div>
+
+          <p>
+            Meanwhile, you can visit our website to learn more about our programs and opportunities.
+          </p>
+          <p>
+            <a href="https://www.shrlbd.com" class="button" target="_blank" rel="noreferrer"
+              >Visit Our Website</a
+            >
+          </p>
+
+          <p class="muted">This is an automated message, but replies are monitored by our team.</p>
+        </div>
+
+        <div class="footer">
+          Smart HealthCare & Research Ltd. All rights reserved.<br />
+          You’re receiving this because you submitted a “Join Team” request.
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

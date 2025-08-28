@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>New Investment Alert</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: #f9fafb;
+        margin: 0;
+        padding: 0;
+      }
+      .container {
+        max-width: 600px;
+        background: #ffffff;
+        margin: 30px auto;
+        padding: 20px 30px;
+        border-radius: 12px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+      }
+      h1 {
+        color: #dc2626;
+        font-size: 22px;
+        margin-bottom: 16px;
+      }
+      p {
+        color: #374151;
+        line-height: 1.6;
+        margin: 8px 0;
+      }
+      .info-box {
+        background: #f3f4f6;
+        padding: 15px;
+        border-radius: 8px;
+        margin: 20px 0;
+      }
+      .info-box p {
+        margin: 6px 0;
+      }
+      .highlight {
+        font-weight: bold;
+        color: #111827;
+      }
+      .footer {
+        margin-top: 25px;
+        font-size: 12px;
+        color: #6b7280;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>📩 New Investment Received</h1>
+      <p>Hello Admin,</p>
+      <p>A new investment has just been submitted. Below are the details:</p>
+
+      <div class="info-box">
+        <p><span class="highlight">Name:</span> <%= name %></p>
+        <p><span class="highlight">Profession:</span> <%= profession %></p>
+        <p><span class="highlight">Email:</span> <%= email %></p>
+        <p><span class="highlight">WhatsApp:</span> <%= whatsapp %></p>
+        <p><span class="highlight">Amount Invested:</span> $<%= amount %></p>
+      </div>
+
+      <p>Please review and verify this investment in the system at your earliest convenience.</p>
+
+      <div class="footer">
+        <p>System Notification • <%= new Date().toLocaleString() %> Tab Startup Invest</p>
+      </div>
+    </div>
+  </body>
+</html>
