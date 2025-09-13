@@ -8,6 +8,7 @@ import expressSession from 'express-session';
 import envVars from './app/config/env';
 import './app/config/passport';
 import { globalErrorHandler } from './app/middlewares/globalErrorHandler';
+import compression from 'compression';
 // import OpenAI from 'openai';
 
 const app = express();
@@ -35,6 +36,7 @@ const corsOptions: CorsOptions = {
 };
 
 app.use(cors(corsOptions));
+app.use(compression());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
