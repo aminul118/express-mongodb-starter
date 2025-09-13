@@ -3,13 +3,9 @@ import { UserRoutes } from '../modules/user/user.routes';
 import AuthRouter from '../modules/auth/auth.route';
 import { OTPRouter } from '../modules/otp/otp.route';
 import { ContactRouter } from '../modules/contact/contact.route';
+import { IModuleRoutes } from '../types';
 
 const router = Router();
-
-interface IModuleRoutes {
-  path: string;
-  element: Router;
-}
 
 const moduleRoutes: IModuleRoutes[] = [
   {

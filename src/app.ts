@@ -1,6 +1,5 @@
 import express, { Request, Response } from 'express';
-import { routerV1 } from './app/routes';
-import cors, { CorsOptions } from 'cors';
+import cors from 'cors';
 import notFound from './app/middlewares/notFound';
 import cookieParser from 'cookie-parser';
 import passport from 'passport';
@@ -9,31 +8,10 @@ import envVars from './app/config/env';
 import './app/config/passport';
 import { globalErrorHandler } from './app/middlewares/globalErrorHandler';
 import compression from 'compression';
-// import OpenAI from 'openai';
+import corsOptions from './app/config/cors.config';
+import router from './app/routes';
 
 const app = express();
-
-// CORS configuration (proper dynamic origin checking)
-const allowedOrigins = ['http://localhost:3000', 'http://127.0.0.1:3000'];
-
-// Cors Allow Options
-const corsOptions: CorsOptions = {
-  origin: (origin, callback) => {
-    if (!origin) return callback(null, true); // allow server-to-server
-
-    const isAllowed = allowedOrigins.some(
-      (allowed) =>
-        origin.startsWith(allowed.replace('www.', '')) || origin === allowed,
-    );
-
-    if (isAllowed) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  credentials: true,
-};
 
 app.use(cors(corsOptions));
 app.use(compression());
@@ -59,7 +37,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 //  API routes
-app.use('/api/v1', routerV1);
+app.use('/api/v1', router.v1);
 
 //  Test route
 app.get('/', (req: Request, res: Response) => {
