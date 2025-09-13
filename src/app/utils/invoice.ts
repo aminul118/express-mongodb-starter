@@ -11,7 +11,9 @@ export interface IInvoiceData {
   totalAmount: number;
 }
 
-const generatePdf = async (invoiceData: IInvoiceData): Promise<Buffer<ArrayBufferLike>> => {
+const generatePdf = async (
+  invoiceData: IInvoiceData,
+): Promise<Buffer<ArrayBufferLike>> => {
   try {
     return new Promise((resolve, reject) => {
       const doc = new PDFDocument({ size: 'A4', margin: 50 });

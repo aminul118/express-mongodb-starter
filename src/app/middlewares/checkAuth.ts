@@ -16,7 +16,10 @@ const checkAuth =
       if (!accessToken) {
         throw new AppError(httpStatus.BAD_GATEWAY, 'No token received');
       }
-      const verifiedToken = verifyToken(accessToken, envVars.JWT_ACCESS_SECRET) as JwtPayload;
+      const verifiedToken = verifyToken(
+        accessToken,
+        envVars.JWT_ACCESS_SECRET,
+      ) as JwtPayload;
 
       if (!verifiedToken) {
         throw new AppError(httpStatus.UNAUTHORIZED, 'You are not authorized');
@@ -31,8 +34,14 @@ const checkAuth =
       if (!isUserExist) {
         throw new AppError(httpStatus.BAD_REQUEST, 'User does not exist');
       }
-      if (isUserExist.isActive === IsActive.BLOCKED || isUserExist.isActive === IsActive.INACTIVE) {
-        throw new AppError(httpStatus.BAD_REQUEST, `User is ${isUserExist.isActive}`);
+      if (
+        isUserExist.isActive === IsActive.BLOCKED ||
+        isUserExist.isActive === IsActive.INACTIVE
+      ) {
+        throw new AppError(
+          httpStatus.BAD_REQUEST,
+          `User is ${isUserExist.isActive}`,
+        );
       }
       if (isUserExist.isDeleted) {
         throw new AppError(httpStatus.BAD_REQUEST, 'User is deleted');

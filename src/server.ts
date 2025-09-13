@@ -1,78 +1,32 @@
 /* eslint-disable no-console */
 import { Server } from 'http';
-import mongoose from 'mongoose';
 import app from './app';
 import envVars, { envFile } from './app/config/env';
-
+import seedSupperAdmin from './app/utils/seedSuperAdmin';
 import { connectRedis } from './app/config/redis.config';
-import { seedSupperAdmin } from './app/utils/seedSuperAdmin';
+import serverGracefulShutdown from './app/utils/serverGracefulShutdown';
+import dbConnect from './app/config/mongodb.config';
 
 let server: Server;
 
 const startServer = async () => {
   try {
-    await mongoose.connect(envVars.DB_URL as string);
-    console.log('🚀 Connected to DB');
-
+    // Connect MongoDB
+    await dbConnect();
+    // Start Express app
     server = app.listen(envVars.PORT, () => {
-      console.log('ENV File->', envFile);
-      console.log('Server is running on port', envVars.PORT);
+      console.log('ENV File ->', envFile);
+      console.log(`✅ Server is running on port ${envVars.PORT}`);
     });
+
+    await connectRedis();
+    await seedSupperAdmin();
+    // Setup shutdown handlers
+    serverGracefulShutdown(server);
   } catch (error) {
-    console.log(error);
+    console.error('❌ Failed to start server:', error);
+    process.exit(1);
   }
 };
 
-(async () => {
-  await connectRedis();
-  await startServer();
-  await seedSupperAdmin();
-})();
-
-process.on('SIGTERM', () => {
-  console.log('SIGTERM signal received... Server shutting down..');
-
-  if (server) {
-    server.close(() => {
-      process.exit(1);
-    });
-  }
-
-  process.exit(1);
-});
-
-process.on('SIGINT', () => {
-  console.log('SIGINT signal received... Server shutting down..');
-
-  if (server) {
-    server.close(() => {
-      process.exit(1);
-    });
-  }
-
-  process.exit(1);
-});
-
-process.on('unhandledRejection', (err) => {
-  console.log('Unhandled Rejection detected... Server shutting down..', err);
-
-  if (server) {
-    server.close(() => {
-      process.exit(1);
-    });
-  }
-
-  process.exit(1);
-});
-
-process.on('uncaughtException', (err) => {
-  console.log('Uncaught Exception detected... Server shutting down..', err);
-
-  if (server) {
-    server.close(() => {
-      process.exit(1);
-    });
-  }
-
-  process.exit(1);
-});
+export default startServer;

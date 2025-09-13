@@ -25,7 +25,10 @@ const changePassword = async (
     throw new AppError(httpStatus.NOT_FOUND, 'User not found');
   }
 
-  const isOldPassword = await bcryptjs.compare(oldPassword, user.password as string);
+  const isOldPassword = await bcryptjs.compare(
+    oldPassword,
+    user.password as string,
+  );
 
   if (!isOldPassword) {
     throw new AppError(httpStatus.UNAUTHORIZED, "Old password doesn't match");
@@ -41,14 +44,20 @@ const setPassword = async (userId: string, plainPassword: string) => {
     throw new AppError(httpStatus.NOT_FOUND, 'User not found');
   }
 
-  if (user.password && user.auths.some((providerObj) => providerObj.provider === 'google')) {
+  if (
+    user.password &&
+    user.auths.some((providerObj) => providerObj.provider === 'google')
+  ) {
     throw new AppError(
       httpStatus.BAD_REQUEST,
       'You have already set password. Now you can change the password from your profile password update',
     );
   }
 
-  const hashedPassword = await bcryptjs.hash(plainPassword, envVars.BCRYPT_SALT_ROUND);
+  const hashedPassword = await bcryptjs.hash(
+    plainPassword,
+    envVars.BCRYPT_SALT_ROUND,
+  );
 
   const credentialProvider: IAuthProvider = {
     provider: 'credentials',
@@ -70,8 +79,14 @@ const forgotPassword = async (email: string) => {
   if (!isUserExist.isVerified) {
     throw new AppError(httpStatus.BAD_REQUEST, 'User is not verified');
   }
-  if (isUserExist.isActive === IsActive.BLOCKED || isUserExist.isActive === IsActive.INACTIVE) {
-    throw new AppError(httpStatus.BAD_REQUEST, `User is ${isUserExist.isActive}`);
+  if (
+    isUserExist.isActive === IsActive.BLOCKED ||
+    isUserExist.isActive === IsActive.INACTIVE
+  ) {
+    throw new AppError(
+      httpStatus.BAD_REQUEST,
+      `User is ${isUserExist.isActive}`,
+    );
   }
   if (isUserExist.isDeleted) {
     throw new AppError(httpStatus.BAD_REQUEST, 'User is deleted');
@@ -101,7 +116,10 @@ const forgotPassword = async (email: string) => {
   });
 };
 
-const resetPassword = async (payload: Record<string, any>, decodedToken: JwtPayload) => {
+const resetPassword = async (
+  payload: Record<string, any>,
+  decodedToken: JwtPayload,
+) => {
   if (payload.id != decodedToken.userId) {
     throw new AppError(httpStatus.FORBIDDEN, 'You can not reset your password');
   }

@@ -21,7 +21,8 @@ const corsOptions: CorsOptions = {
     if (!origin) return callback(null, true); // allow server-to-server
 
     const isAllowed = allowedOrigins.some(
-      (allowed) => origin.startsWith(allowed.replace('www.', '')) || origin === allowed,
+      (allowed) =>
+        origin.startsWith(allowed.replace('www.', '')) || origin === allowed,
     );
 
     if (isAllowed) {
@@ -60,7 +61,8 @@ app.use('/api/v1', router);
 
 //  Test route
 app.get('/', (req: Request, res: Response) => {
-  const siteMode = process.env.NODE_ENV === 'development' ? 'Development' : 'Production';
+  const siteMode =
+    process.env.NODE_ENV === 'development' ? 'Development' : 'Production';
   if (siteMode) {
     res.status(200).json({
       status: 200,

@@ -8,7 +8,9 @@ export interface SendEmailOptions {
   templateData?: Record<string, any>;
   attachments?: {
     filename: string;
-    content: Buffer | string;
-    contentType: string;
+    content?: Buffer | string;
+    contentType?: string;
+    path?: string;
+    cid?: string;
   }[];
 }

@@ -40,6 +40,8 @@ const sendEmail = async ({
         filename: a.filename,
         content: a.content,
         contentType: a.contentType,
+        path: a.path,
+        cid: a.cid,
       })),
     });
     console.log(`\u2709\uFE0F Email sent to ${to}: ${info.messageId}`);

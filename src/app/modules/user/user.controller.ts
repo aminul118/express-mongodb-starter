@@ -29,7 +29,11 @@ const updateUser = catchAsync(async (req: Request, res: Response) => {
   const userId = req.params.id;
   const verifiedToken = req.user;
 
-  const user = await userServices.updateUser(userId, payload, verifiedToken as JwtPayload);
+  const user = await userServices.updateUser(
+    userId,
+    payload,
+    verifiedToken as JwtPayload,
+  );
   sendResponse(res, {
     statusCode: httpStatus.CREATED,
     success: true,
@@ -39,7 +43,8 @@ const updateUser = catchAsync(async (req: Request, res: Response) => {
 });
 
 const getAllUsers = catchAsync(async (req: Request, res: Response) => {
-  const users = await userServices.getAllUsers();
+  const query = req.query;
+  const users = await userServices.getAllUsers(query as Record<string, string>);
 
   sendResponse(res, {
     statusCode: httpStatus.OK,
@@ -61,23 +66,9 @@ const getMe = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
-const getMyCompanyProfile = catchAsync(async (req: Request, res: Response) => {
-  const decodedToken = req.user as JwtPayload;
-
-  const data = await userServices.getMyCompanyProfile(decodedToken.userId);
-
-  sendResponse(res, {
-    statusCode: httpStatus.OK,
-    success: true,
-    message: 'Your Profile retrieved successfully',
-    data,
-  });
-});
-
 export const UserControllers = {
   createUser,
   updateUser,
   getAllUsers,
   getMe,
-  getMyCompanyProfile,
 };

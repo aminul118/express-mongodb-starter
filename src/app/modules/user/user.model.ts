@@ -22,11 +22,7 @@ const authProviderSchema = new Schema<IAuthProvider>(
 
 const userSchema = new Schema<IUser>(
   {
-    firstName: {
-      type: String,
-      required: true,
-      trim: true,
-    },
+    firstName: { type: String, required: true, trim: true },
     lastName: {
       type: String,
       required: true,
@@ -46,6 +42,7 @@ const userSchema = new Schema<IUser>(
     },
     address: {
       type: String,
+      trim: true,
     },
     picture: {
       type: String,
@@ -57,7 +54,7 @@ const userSchema = new Schema<IUser>(
     role: {
       type: String,
       enum: Object.values(Role),
-      default: Role.INVESTOR,
+      default: Role.USER,
     },
     userId: {
       type: Number,
@@ -83,6 +80,11 @@ const userSchema = new Schema<IUser>(
     versionKey: false,
   },
 );
+
+//  Virtual for full name
+userSchema.virtual('fullName').get(function (this: IUser) {
+  return `${this.firstName} ${this.lastName}`;
+});
 
 // Auto-increment userId before saving
 userSchema.pre('save', async function (next) {

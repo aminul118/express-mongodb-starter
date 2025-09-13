@@ -30,7 +30,12 @@ const localStrategyOptions: IStrategyOptionsWithRequest = {
   passReqToCallback: true,
 };
 
-const localVerifyFunction: VerifyFunctionWithRequest = async (req, email, password, done) => {
+const localVerifyFunction: VerifyFunctionWithRequest = async (
+  req,
+  email,
+  password,
+  done,
+) => {
   try {
     const isUserExist = await User.findOne({ email });
 
@@ -38,20 +43,28 @@ const localVerifyFunction: VerifyFunctionWithRequest = async (req, email, passwo
       return done("User doesn't exist");
     }
 
-    if (isUserExist.isActive === IsActive.BLOCKED || isUserExist.isActive === IsActive.INACTIVE) {
-      throw new AppError(httpStatus.BAD_REQUEST, `User is ${isUserExist.isActive}`);
+    if (
+      isUserExist.isActive === IsActive.BLOCKED ||
+      isUserExist.isActive === IsActive.INACTIVE
+    ) {
+      throw new AppError(
+        httpStatus.BAD_REQUEST,
+        `User is ${isUserExist.isActive}`,
+      );
     }
     if (isUserExist.isDeleted) {
       throw new AppError(httpStatus.BAD_REQUEST, 'User is deleted');
     }
 
     if (!isUserExist.isVerified) {
-      throw new AppError(httpStatus.BAD_REQUEST, "User isn't verified");
+      throw new AppError(1242, "User isn't verified");
     }
 
-    const isGoogleAuthenticate: boolean = isUserExist.auths.some((providerObj) => {
-      return providerObj.provider === 'google';
-    });
+    const isGoogleAuthenticate: boolean = isUserExist.auths.some(
+      (providerObj) => {
+        return providerObj.provider === 'google';
+      },
+    );
 
     if (isGoogleAuthenticate && !isUserExist.password) {
       return done(
@@ -59,7 +72,10 @@ const localVerifyFunction: VerifyFunctionWithRequest = async (req, email, passwo
       );
     }
 
-    const isPasswordMatched = await bcrypt.compare(password, isUserExist.password as string);
+    const isPasswordMatched = await bcrypt.compare(
+      password,
+      isUserExist.password as string,
+    );
 
     if (!isPasswordMatched) {
       return done('Incorrect password');
@@ -105,7 +121,8 @@ const googleVerifyFunction = async (
 
     if (
       isUserExist &&
-      (isUserExist.isActive === IsActive.BLOCKED || isUserExist.isActive === IsActive.INACTIVE)
+      (isUserExist.isActive === IsActive.BLOCKED ||
+        isUserExist.isActive === IsActive.INACTIVE)
     ) {
       // throw new AppError(httpStatus.BAD_REQUEST, `User is ${isUserExist.isActive}`)
       return done(`User is ${isUserExist.isActive}`);
@@ -152,16 +169,18 @@ passport.serializeUser((user: any, done: (err: any, id?: unknown) => void) => {
   done(null, user._id);
 });
 
-passport.deserializeUser(async (id: string, done: (err: any, user?: any) => void) => {
-  try {
-    const user = await User.findById(id);
-    done(null, user);
-  } catch (error) {
-    if (envVars.NODE_ENV === 'development') {
-      console.log('Deserialize', error);
+passport.deserializeUser(
+  async (id: string, done: (err: any, user?: any) => void) => {
+    try {
+      const user = await User.findById(id);
+      done(null, user);
+    } catch (error) {
+      if (envVars.NODE_ENV === 'development') {
+        console.log('Deserialize', error);
+      }
+      done(error);
     }
-    done(error);
-  }
-});
+  },
+);
 
 export default passport;

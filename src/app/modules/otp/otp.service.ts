@@ -24,7 +24,11 @@ const verifyOTP = async (res: Response, email: string, otp: string) => {
   }
 
   await Promise.all([
-    await User.updateOne({ email }, { isVerified: true }, { runValidators: true }),
+    await User.updateOne(
+      { email },
+      { isVerified: true },
+      { runValidators: true },
+    ),
     await redisClient.del([redisKey]),
   ]);
 

@@ -53,4 +53,4 @@ const seedSupperAdmin = async () => {
   }
 };
 
-export { seedSupperAdmin };
+export default seedSupperAdmin;

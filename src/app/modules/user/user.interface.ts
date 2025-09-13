@@ -2,9 +2,8 @@ import { Types } from 'mongoose';
 
 export enum Role {
   SUPER_ADMIN = 'SUPER_ADMIN',
-  INVESTOR = 'investor',
-  ENTREPRENEUR = 'entrepreneur',
-  MENTOR = 'mentor',
+  ADMIN = 'ADMIN',
+  USER = 'USER',
 }
 
 export enum IsActive {
@@ -28,9 +27,6 @@ export interface IUser {
   picture?: string;
   password: string;
   role: Role;
-  entrepreneur_profile?: Types.ObjectId;
-  investor_profile?: Types.ObjectId;
-  mentor_profile?: Types.ObjectId;
   userId?: number;
   isDeleted?: string;
   isActive?: IsActive;
