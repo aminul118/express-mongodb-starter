@@ -1,5 +1,5 @@
 import express, { Request, Response } from 'express';
-import router from './app/routes';
+import { routerV1 } from './app/routes';
 import cors, { CorsOptions } from 'cors';
 import notFound from './app/middlewares/notFound';
 import cookieParser from 'cookie-parser';
@@ -57,7 +57,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 //  API routes
-app.use('/api/v1', router);
+app.use('/api/v1', routerV1);
 
 //  Test route
 app.get('/', (req: Request, res: Response) => {

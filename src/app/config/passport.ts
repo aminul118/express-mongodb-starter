@@ -138,7 +138,7 @@ const googleVerifyFunction = async (
         email,
         name: profile.displayName,
         picture: profile.photos?.[0].value,
-        role: Role.INVESTOR,
+        role: Role.USER,
         isVerified: true,
         auths: [
           {
