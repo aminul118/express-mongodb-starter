@@ -3,7 +3,10 @@ import { Server } from 'http';
 
 const serverGracefulShutdown = (server: Server) => {
   const shutdown = (reason: string, err?: unknown) => {
-    console.log(`⚠️ ${reason}... Shutting down gracefully.`, err || '');
+    console.log(
+      `⚠️  ${reason} --> Server shutting down gracefully.`,
+      err || '',
+    );
 
     if (server) {
       server.close(() => {

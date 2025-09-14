@@ -2,13 +2,13 @@
 import mongoose from 'mongoose';
 import envVars from './env';
 
-const dbConnect = async () => {
+const connectDB = async () => {
   try {
     await mongoose.connect(envVars.DB_URL);
     console.log('🚀 Connected to MongoDB');
   } catch (error) {
-    console.log('DB Connection failed', error);
+    console.log('MongoDB Connection failed', error);
   }
 };
 
-export default dbConnect;
+export default connectDB;
