@@ -16,7 +16,7 @@ const startServer = async () => {
 
     // Start Express app
     server = app.listen(envVars.PORT, () => {
-      console.log('ENV File ->', envFile);
+      console.log('🔐 ENV File ->', envFile);
       console.log(`✅ Server is running on port ${envVars.PORT}`);
     });
 

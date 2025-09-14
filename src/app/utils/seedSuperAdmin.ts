@@ -12,7 +12,7 @@ const seedSupperAdmin = async () => {
     });
 
     if (isSupperAdminExist) {
-      console.log('Super admin already exists');
+      console.log('❌ Super admin already exists');
       return;
     }
 
@@ -47,7 +47,7 @@ const seedSupperAdmin = async () => {
     };
 
     const superAdmin = await User.create(payload);
-    console.log('Super admin created successfully \n', superAdmin);
+    console.log('✅ Super admin created successfully \n', superAdmin);
   } catch (error) {
     console.log(error);
   }
